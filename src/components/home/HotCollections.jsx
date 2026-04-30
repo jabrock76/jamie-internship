@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -36,10 +37,9 @@ const HotCollections = () => {
   useEffect(() => { 
     const fetchData = async () => {
       try {
-        const response = await fetch("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections");
-        const jsonData = await response.json();
+        const response = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections");
+        const jsonData = response.data;
         setData(jsonData);
-        console.log(jsonData);
       } catch (error) {
         setError(error);
       } finally {
