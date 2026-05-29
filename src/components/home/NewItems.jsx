@@ -123,8 +123,8 @@ const NewItems = () => {
             </div>
           </div>
           <Slider {...settings}>
-            {data.map((item, index) => (
-            <div key={index} style={{ padding: " 0 10px"}}>
+            {data.map((item) => (
+            <div key={item.nftId} style={{ padding: " 0 10px"}}>
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link

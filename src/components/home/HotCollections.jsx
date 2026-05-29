@@ -49,13 +49,6 @@ const HotCollections = () => {
   fetchData();
 }, []);
 
-if (loading) {
-  return <div>Loading...</div>;
-}
-if (error) {
-  return <div>Error: {error.message}</div>;
-}
-
 //  Slider settings with responsive breakpoints
 const settings = {
   infinite: true,
@@ -88,6 +81,7 @@ const settings = {
     }
   ]
 }
+
 return (
 <section id="section-collections" className="no-bottom">
       <div className="container">
@@ -100,10 +94,10 @@ return (
           </div>
           <div className="col-lg-12">
              {loading ? (
-              <div className="row">
+              <Slider {...settings}>
                 {new Array(4).fill(0).map((_, index) => (
-                  <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-                    <div className="nft_coll">
+                  <div key={`skeleton-${index}`}>
+                    <div className="nft_coll" style={{ margin: '0 10px' }}>
                       <div className="nft_wrap">
                         <div className="skeleton skeleton-img"></div>
                       </div>
@@ -117,25 +111,27 @@ return (
                     </div>
                   </div>
                 ))}
-              </div>
+              </Slider>
+            ) : error ? (
+              <div>Error: {error.message}</div>
             ) : (
               <Slider {...settings}>
-                {data.map((collection, index) => (
-                  <div key={index}>
+                {data.map((collection) => (
+                  <div key={collection.id}>
                     <div className="nft_coll" style={{ margin: '0 10px' }}>
                       <div className="nft_wrap">
-                        <Link to="/item-details">
+                        <Link to={`/item-details/${collection.nftId}`}>
                           <img src={collection.nftImage} className="lazy img-fluid" alt="" />
                         </Link>
                       </div>
                       <div className="nft_coll_pp">
-                        <Link to="/author">
+                        <Link to={`/author/${collection.authorId}`}>
                           <img className="lazy pp-coll" src={collection.authorImage} alt="" />
                         </Link>
                         <i className="fa fa-check"></i>
                       </div>
                       <div className="nft_coll_info">
-                        <Link to="/explore">
+                        <Link to={`/item-details/${collection.nftId}`}>
                           <h4>{collection.title}</h4>
                         </Link>
                         <span>ERC-{collection.code}</span>
@@ -152,6 +148,4 @@ return (
   );
 }; 
  
-export default HotCollections; 
-
-               
+export default HotCollections;

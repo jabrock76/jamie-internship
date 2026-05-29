@@ -16,7 +16,7 @@ const ExploreItems = () => {
       </div>
       {new Array(8).fill(0).map((_, index) => (
         <div
-          key={index}
+          key={`explore-item-${index}`}
           className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
           style={{ display: "block", backgroundSize: "cover" }}
         >
