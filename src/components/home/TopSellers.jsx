@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import axios from "axios";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const TopSellers = () => {
 
@@ -9,7 +11,12 @@ const TopSellers = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => { 
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+    
     const fetchData = async () => {
       try {
         const response = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers");
@@ -34,7 +41,7 @@ const TopSellers = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <div className="col-md-12">
+          <div className="col-md-12" data-aos="fade-up">
             {loading ? (
               <ol className="author_list">
                 {new Array(12).fill(0).map((_, index) => (

@@ -7,6 +7,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../../css/styles/hotCollectionsSlider.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 //Custom Arrows for the slider
 const NextArrow = (props) => {
@@ -34,7 +36,12 @@ const HotCollections = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => { 
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+    
     const fetchData = async () => {
       try {
         const response = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections");
@@ -92,7 +99,7 @@ return (
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <div className="col-lg-12">
+          <div className="col-lg-12" data-aos="fade-up">
              {loading ? (
               <Slider {...settings}>
                 {new Array(4).fill(0).map((_, index) => (
