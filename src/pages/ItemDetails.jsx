@@ -30,34 +30,74 @@ const ItemDetails = () => {
     fetchItem();
   }, [nftId]);
 
-  if (loading) {
-    return (
-      <div id="wrapper">
-        <div className="no-bottom no-top" id="content">
-          <div id="top"></div>
-          <section aria-label="section" className="mt90 sm-mt-0">
-            <div className="container">
-              <div className="row">
-                <div className="col-md-6 text-center">
-                  <div className="skeleton skeleton-img-large"></div>
-                </div>
-                <div className="col-md-6">
-                  <div className="item_info">
-                    <div className="skeleton skeleton-title" style={{ width: "60%", marginBottom: "20px" }}></div>
-                    <div className="skeleton skeleton-text" style={{ width: "40%", marginBottom: "20px" }}></div>
-                    <div className="skeleton skeleton-text" style={{ width: "100%", height: "80px", marginBottom: "20px" }}></div>
-                    <div className="skeleton skeleton-text" style={{ width: "50%", marginBottom: "20px" }}></div>
-                    <div className="skeleton skeleton-text" style={{ width: "50%", marginBottom: "20px" }}></div>
-                    <div className="skeleton skeleton-text" style={{ width: "30%" }}></div>
+ if (loading) {
+  return (
+    <div id="wrapper">
+      <div className="no-bottom no-top" id="content">
+        <div id="top"></div>
+        <section aria-label="section" className="mt90 sm-mt-0">
+          <div className="container">
+            <div className="row">
+              {/* Left Side - NFT Image */}
+              <div className="col-md-6 text-center">
+                <div className="skeleton" style={{ width: "100%", height: "400px", borderRadius: "10px" }}></div>
+              </div>
+
+              {/* Right Side - Item Info */}
+              <div className="col-md-6">
+                <div className="item_info">
+                  {/* Title */}
+                  <div className="skeleton" style={{ width: "70%", height: "30px", marginBottom: "15px" }}></div>
+
+                  {/* Views & Likes */}
+                  <div className="d-flex" style={{ gap: "15px", marginBottom: "20px" }}>
+                    <div className="skeleton" style={{ width: "80px", height: "20px" }}></div>
+                    <div className="skeleton" style={{ width: "80px", height: "20px" }}></div>
+                  </div>
+
+                  {/* Description */}
+                  <div className="skeleton" style={{ width: "100%", height: "18px", marginBottom: "8px" }}></div>
+                  <div className="skeleton" style={{ width: "100%", height: "18px", marginBottom: "8px" }}></div>
+                  <div className="skeleton" style={{ width: "60%", height: "18px", marginBottom: "25px" }}></div>
+
+                  {/* Owner */}
+                  <div className="d-flex flex-row" style={{ marginBottom: "25px" }}>
+                    <div className="mr40">
+                      <div className="skeleton" style={{ width: "60px", height: "16px", marginBottom: "10px" }}></div>
+                      <div className="d-flex align-items-center" style={{ gap: "10px" }}>
+                        <div className="skeleton" style={{ width: "50px", height: "50px", borderRadius: "50%" }}></div>
+                        <div className="skeleton" style={{ width: "100px", height: "16px" }}></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Creator */}
+                  <div style={{ marginBottom: "25px" }}>
+                    <div className="skeleton" style={{ width: "60px", height: "16px", marginBottom: "10px" }}></div>
+                    <div className="d-flex align-items-center" style={{ gap: "10px" }}>
+                      <div className="skeleton" style={{ width: "50px", height: "50px", borderRadius: "50%" }}></div>
+                      <div className="skeleton" style={{ width: "100px", height: "16px" }}></div>
+                    </div>
+                  </div>
+
+                  {/* Price */}
+                  <div>
+                    <div className="skeleton" style={{ width: "50px", height: "16px", marginBottom: "10px" }}></div>
+                    <div className="d-flex align-items-center" style={{ gap: "10px" }}>
+                      <div className="skeleton" style={{ width: "20px", height: "20px", borderRadius: "50%" }}></div>
+                      <div className="skeleton" style={{ width: "80px", height: "24px" }}></div>
+                    </div>
                   </div>
                 </div>
               </div>
+
             </div>
-          </section>
-        </div>
+          </div>
+        </section>
       </div>
-    );
-  }
+    </div>
+  );
+}
 
   if (error) return <div>Error: {error.message}</div>;
 
